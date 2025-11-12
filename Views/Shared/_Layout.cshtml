@@ -1,0 +1,45 @@
+﻿@{
+    var title = ViewData["Title"] as string ?? "Municipal Services";
+    var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+    var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@title - Municipal Services</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <!-- ✅ Top Task Bar -->
+    <nav class="taskbar">
+        <ul>
+            <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li><a asp-controller="Issues" asp-action="Report">Report Issue</a></li>
+            <li><a asp-controller="Events" asp-action="Index">Local Events</a></li>
+            <li><a asp-controller="Status" asp-action="Index">Service Status</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        @if (currentController == "Home" && currentAction == "Index")
+        {
+            <section class="greeting text-center">
+                <h1 class="display-4 text-white">Welcome to Municipal Services</h1>
+                <p class="lead text-light">
+                    Empowering our community through efficient reporting, transparent updates, and local engagement.
+                </p>
+                <p class="text-light">
+                    Use the task bar above to report issues, explore local events, or check service request statuses.
+                </p>
+            </section>
+        }
+
+        @RenderBody()
+    </main>
+
+    <footer class="main-footer">
+        <small>&copy; @DateTime.Now.Year Municipal Services</small>
+    </footer>
+</body>
+</html>

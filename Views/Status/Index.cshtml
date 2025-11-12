@@ -1,0 +1,59 @@
+﻿@model List<MunicipalService_P3.Models.ServiceRequest>
+@{
+    ViewData["Title"] = "Service Status";
+    Layout = "_Layout";
+}
+
+<div class="container mt-4">
+    <h2 class="text-white">Service Request Status</h2>
+
+    <div class="card bg-dark text-white mb-4">
+        <div class="card-header">Search Request</div>
+        <div class="card-body">
+            <form method="post" asp-action="Search">
+                <input type="number" name="requestId" placeholder="Request ID" class="form-control mb-2" />
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+
+            @if (ViewBag.Result != null)
+            {
+                <div class="alert alert-info mt-3">
+                    <strong>Found:</strong> @ViewBag.Result.Description (@ViewBag.Result.Status)<br />
+                    <strong>Dependencies:</strong> @string.Join(", ", ViewBag.Dependencies as List<int>)
+                </div>
+            }
+
+            @if (ViewBag.TopPriority != null)
+            {
+                <p class="text-success mt-2">
+                    <strong>Top Priority:</strong> @ViewBag.TopPriority.Description (Priority @ViewBag.TopPriority.Priority)
+                </p>
+            }
+        </div>
+    </div>
+
+    <div class="card bg-dark text-white mb-4">
+        <div class="card-header">Create New Request</div>
+        <div class="card-body">
+            <form method="post" asp-action="Create">
+                <input type="text" name="Description" placeholder="Description" class="form-control mb-2" />
+                <input type="number" name="Priority" placeholder="Priority (0-10)" class="form-control mb-2" />
+                <input type="text" name="Status" value="Pending" class="form-control mb-2" />
+                <button type="submit" class="btn btn-secondary">Create</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="card bg-dark text-white">
+        <div class="card-header">All Requests</div>
+        <ul class="list-group list-group-flush">
+            @foreach (var req in Model)
+            {
+                <li class="list-group-item bg-dark text-white">
+                    <strong>ID:</strong> @req.RequestId — @req.Description —
+                    <span class="text-muted">@req.Status</span> — Priority @req.Priority
+                </li>
+            }
+        </ul>
+    </div>
+</div>
