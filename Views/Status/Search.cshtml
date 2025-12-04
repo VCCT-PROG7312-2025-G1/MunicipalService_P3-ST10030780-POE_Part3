@@ -1,0 +1,10 @@
+﻿@model MunicipalService_P3.Models.ServiceRequest
+<h2>Search Result</h2>
+@if (Model != null)
+{
+    <p>Found: @Model.Id - @Model.Description (Priority: @Model.Priority, Status: @Model.Status)</p>
+}
+else
+{
+    <p>No request found with that ID.</p>
+}

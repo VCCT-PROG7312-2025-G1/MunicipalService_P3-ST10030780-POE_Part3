@@ -1,0 +1,15 @@
+﻿@model IEnumerable<MunicipalService_P3.Models.ServiceRequest>
+<h2>Sorted Service Requests (AVL)</h2>
+<table class="table">
+    <tr><th>ID</th><th>Category</th><th>Description</th><th>Priority</th><th>Status</th></tr>
+    @foreach (var req in Model)
+    {
+        <tr>
+            <td>@req.Id</td>
+            <td>@req.Category</td>
+            <td>@req.Description</td>
+            <td>@req.Priority</td>
+            <td>@req.Status</td>
+        </tr>
+    }
+</table>    
