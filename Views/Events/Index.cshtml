@@ -1,54 +1,50 @@
-﻿<!-- Views/Events/Index.cshtml -->
-@model List<MunicipalService_P3.Models.Event>
+﻿@model List<MunicipalService_P3.Models.Event>
 @{
-    ViewData["Title"] = "Events";
+    ViewData["Title"] = "Local Events";
     Layout = "_Layout";
-    var categories = ViewBag.Categories as List<string>;
-    var recs = ViewBag.Recommendations as List<MunicipalService_P3.Models.Event>;
-}
-<h2>Upcoming Events</h2>
-<form method="get" class="mb-3">
-    <input type="text" name="keyword" placeholder="Search..." class="form-control mb-2" />
-    <select name="category" class="form-select mb-2">
-        <option value="">All Categories</option>
-        @if (categories != null)
-        {
-            foreach (var cat in categories)
-            {
-                <option>@cat</option>
-            }
-        }
-    </select>
-    <input type="date" name="date" class="form-control mb-2" />
-    <button type="submit" class="btn btn-primary">Filter</button>
-</form>
-
-@if (Model?.Any() == true)
-{
-    <ul class="list-group">
-        @foreach (var ev in Model)
-        {
-            <li class="list-group-item">
-                <strong>@ev.Title</strong> <span class="text-muted">(@ev.Category)</span><br />
-                <small>@ev.EventDate.ToShortDateString() — @ev.Location</small><br />
-                <em>@ev.Description</em>
-            </li>
-        }
-    </ul>
-}
-else
-{
-
-    <p class="text-warning">No events found.</p>
 }
 
-@if (recs?.Any() == true)
+<div class="container mt-4">
+    <h2 class="text-white">Local Events</h2>
+
+    <form method="get" class="mb-3">
+        <div class="row">
+            <div class="col-md-4">
+                <input type="text" name="keyword" placeholder="Search by keyword" class="form-control" />
+            </div>
+            <div class="col-md-4">
+                <select name="category" class="form-control">
+                    <option value="">All Categories</option>
+                    @foreach (var cat in ViewBag.Categories as HashSet<string>)
+                    {
+                        <option value="@cat">@cat</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-4">
+                <input type="date" name="date" class="form-control" />
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary mt-2">Filter</button>
+    </form>
+
+@foreach (var e in Model)
 {
-    <h3 class="mt-3">Recommended</h3>
-    <ul>
-        @foreach (var r in recs)
-        {
-            <li>@r.Title — @r.EventDate.ToShortDateString() (@r.Category)</li>
-        }
-    </ul>
+        <div class="card bg-dark text-white mb-3">
+            <div class="card-body">
+                <h5 class="card-title">@e.Title</h5>
+                <p class="card-text">@e.Description</p>
+                <p><strong>Category:</strong> @e.Category | <strong>Date:</strong> @e.EventDate.ToShortDateString() | <strong>Location:</strong> @e.Location</p>
+            </div>
+        </div>
 }
+
+@if (ViewBag.Recommendations != null)
+{
+        <h4 class="text-light mt-4">Recommended Events</h4>
+    @foreach (var rec in ViewBag.Recommendations as List<MunicipalService_P3.Models.Event>)
+    {
+            <p class="text-info">@rec.Title — @rec.EventDate.ToShortDateString()</p>
+    }
+}
+    }

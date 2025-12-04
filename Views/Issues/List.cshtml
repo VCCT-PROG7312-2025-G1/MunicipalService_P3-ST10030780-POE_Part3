@@ -4,38 +4,45 @@
     Layout = "_Layout";
 }
 
-<h2>Submitted Issues</h2>
+<div class="container mt-4">
+    <h2 class="text-white">Submitted Issues</h2>
 
-@if (Model != null && Model.Any())
-{
-    <div class="row">
-        @foreach (var issue in Model)
-        {
-            <div class="col-md-6 mb-4">
-                <div class="card bg-dark text-white">
-                    <div class="card-body">
-                        <h5 class="card-title">@issue.Category</h5>
-                        <p class="card-text">
-                            <strong>Date:</strong> @issue.Timestamp.ToShortDateString()<br />
-                            <strong>Location:</strong> @issue.Location<br />
-                            <strong>Description:</strong> @issue.Description
-                        </p>
+    @if (Model != null && Model.Any())
+    {
+        <div class="row">
+            @foreach (var issue in Model)
+            {
+                <div class="col-md-6 mb-4">
+                    <div class="card bg-dark text-white h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">@issue.Category</h5>
+                            <p class="card-text">
+                                <strong>Date:</strong> @issue.Timestamp.ToShortDateString()<br />
+                                <strong>Location:</strong> @issue.Location<br />
+                                <strong>Description:</strong> @issue.Description
+                            </p>
 
-                        @if (!string.IsNullOrEmpty(issue.MediaPath))
-                        {
-                            <img src="@issue.MediaPath" alt="Issue Image" class="img-fluid rounded" style="max-height: 200px;" />
-                        }
-                        else
-                        {
-                            <p class="text-muted">No image uploaded.</p>
-                        }
+                            @if (!string.IsNullOrEmpty(issue.MediaPath))
+                            {
+                                <img src="@issue.MediaPath"
+                                     alt="Uploaded image for @issue.Category"
+                                     class="img-fluid rounded mt-2"
+                                     style="max-height: 200px;" />
+                            }
+                            else
+                            {
+                                <p class="text-muted">No image uploaded.</p>
+                            }
+                        </div>
                     </div>
                 </div>
-            </div>
-        }
-    </div>
-}
-else
-{
-    <p class="text-warning">No issues have been submitted yet.</p>
-}
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning mt-3">
+            No issues have been submitted yet.
+        </div>
+    }
+</div>

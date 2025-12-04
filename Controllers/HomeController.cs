@@ -1,4 +1,3 @@
-// Controllers/HomeController.cs
 using Microsoft.AspNetCore.Mvc;
 namespace MunicipalService_P3.Controllers
 {

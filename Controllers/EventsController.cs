@@ -1,6 +1,6 @@
-﻿// Controllers/EventsController.cs
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MunicipalService_P3.Services;
+
 namespace MunicipalService_P3.Controllers
 {
     public class EventsController : Controller
@@ -8,13 +8,11 @@ namespace MunicipalService_P3.Controllers
         private readonly IDataService _data;
         public EventsController(IDataService data) => _data = data;
 
-        [HttpGet]
         public IActionResult Index(string? keyword, string? category, DateTime? date)
         {
-            ViewBag.Categories = _data.GetEventCategories().OrderBy(c => c).ToList();
-            var events = _data.GetEvents(keyword, category, date);
+            ViewBag.Categories = _data.GetEventCategories();
             ViewBag.Recommendations = _data.GetRecommendations(keyword, category);
-            return View(events);
+            return View(_data.GetEvents(keyword, category, date));
         }
     }
 }

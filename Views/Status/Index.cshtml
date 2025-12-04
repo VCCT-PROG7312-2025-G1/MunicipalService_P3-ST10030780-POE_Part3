@@ -51,7 +51,8 @@
             {
                 <li class="list-group-item bg-dark text-white">
                     <strong>ID:</strong> @req.RequestId — @req.Description —
-                    <span class="text-muted">@req.Status</span> — Priority @req.Priority
+                    <span class="text-muted">@req.Status</span> — Priority @req.Priority —
+                    <span class="text-info">Created: @req.CreatedAt.ToShortDateString()</span>
                 </li>
             }
         </ul>

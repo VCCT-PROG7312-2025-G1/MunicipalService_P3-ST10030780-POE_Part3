@@ -7,15 +7,13 @@ namespace MunicipalService_P3.Controllers
     public class StatusController : Controller
     {
         private readonly IDataService _data;
-
         public StatusController(IDataService data) => _data = data;
 
         [HttpGet]
         public IActionResult Index()
         {
-            var all = _data.GetAllServiceRequests();
             ViewBag.TopPriority = _data.GetTopPriority();
-            return View(all);
+            return View(_data.GetAllServiceRequests());
         }
 
         [HttpPost]
