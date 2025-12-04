@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MunicipalService_P3.Models;
-using MunicipalService_P3.DataStructures;   // ✅ Needed for AVL, MinHeap, Graph
+using MunicipalService_P3.DataStructures;
 using System.Collections.Generic;
 
 namespace MunicipalService_P3.Controllers
 {
     public class StatusController : Controller
     {
-        // ✅ Core data structures for rubric
+        // ✅ Core data structures
         private static readonly AvlTree tree = new AvlTree();
         private static readonly MinHeap heap = new MinHeap();
         private static readonly Graph graph = new Graph();
@@ -21,7 +21,14 @@ namespace MunicipalService_P3.Controllers
             return View(sorted);
         }
 
-        // 🔹 Insert: add new request into AVL, Heap, and Graph
+        // 🔹 Create (GET): load the form for new requests
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        // 🔹 Insert (POST): add new request into AVL, Heap, and Graph
         [HttpPost]
         public IActionResult Insert(ServiceRequest req)
         {
@@ -31,7 +38,7 @@ namespace MunicipalService_P3.Controllers
             if (!ModelState.IsValid)
             {
                 TempData["Error"] = "Invalid input.";
-                return RedirectToAction("Index");
+                return View("Create", req);
             }
 
             tree.Insert(req.Id, req);
@@ -48,7 +55,6 @@ namespace MunicipalService_P3.Controllers
         {
             var result = tree.Search(requestId);
             ViewBag.Result = result;
-
             ViewBag.Dependencies = graph.BFS(requestId);
             ViewBag.TopPriority = heap.Peek();
 

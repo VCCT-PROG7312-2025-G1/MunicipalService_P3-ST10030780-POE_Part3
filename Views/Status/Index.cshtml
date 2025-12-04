@@ -7,6 +7,7 @@
 <div class="container mt-4">
     <h2 class="text-white">Service Request Status</h2>
 
+    <!-- Search Request -->
     <div class="card bg-dark text-white mb-4">
         <div class="card-header">Search Request</div>
         <div class="card-body">
@@ -32,10 +33,11 @@
         </div>
     </div>
 
+    <!-- Create New Request -->
     <div class="card bg-dark text-white mb-4">
         <div class="card-header">Create New Request</div>
         <div class="card-body">
-            <form method="post" asp-action="Create">
+            <form method="post" asp-action="Insert">
                 <input type="text" name="Description" placeholder="Description" class="form-control mb-2" />
                 <input type="number" name="Priority" placeholder="Priority (0-10)" class="form-control mb-2" />
                 <input type="text" name="Status" value="Pending" class="form-control mb-2" />
@@ -44,6 +46,7 @@
         </div>
     </div>
 
+    <!-- All Requests -->
     <div class="card bg-dark text-white">
         <div class="card-header">All Requests</div>
         <ul class="list-group list-group-flush">
