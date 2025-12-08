@@ -1,111 +1,111 @@
+# Municipal Services App – PROG7312 POE
 
-Municipal Services App
+1.Overview
+This ASP.NET Core MVC application empowers residents to:
+- Report municipal issues (e.g. sanitation, roads, utilities)
+- View local events and announcements
+- Track service request statuses using advanced data structures
 
-A civic-grade ASP.NET Core MVC application designed to empower residents by streamlining issue reporting, event discovery, and service request tracking. Built with professional styling, advanced data structures, and clean architecture for academic submission.
+It demonstrates professional backend architecture and integrates:
+- **AVL Tree** for sorted request storage
+- **MinHeap** for urgent request prioritization
+- **Graph Traversal (BFS/DFS)** for request dependencies
+- **Minimum Spanning Tree (MST)** for optimized service zones
 
-Purpose of the Application
+2.Setup Instructions
 
-The Municipal Services App enables users to:
-- Report infrastructure issues (e.g., potholes, broken lights, burst pipes)
-- View and search local community events
-- Track the status and priority of submitted service requests
+### Prerequisites
+- Visual Studio 2022+
+- .NET 6 SDK
+- SQL Server (if using EF Core)
+- Git (optional)
 
-This promotes transparency, civic engagement, and efficient municipal communication.
+Steps
+1. Clone the repo:
+   ```bash
+   git clone https://github.com/VCCT-PROG7312-2025-G1/MunicipalService_P3-ST10030780-POE_Part3.git
+   ```
+2. Open the solution in Visual Studio.
+3. Build the project (`Ctrl+Shift+B`).
+4. Run the app (`F5`).
+5. Navigate to:
+   - `/Home/Index` → Welcome page
+   - `/Issues/Report` → Submit new issues
+   - `/Events/Index` → Browse local events
+   - `/Status/Index` → Track service requests
+    
+3. Features
 
-Application Architecture
+Issue Reporting
+- Submit issue details with location, category, and description
+- Attach files (optional)
+- Feedback messages and progress indicators
 
-- **MVC Pattern**: Separation of concerns via Models, Views, and Controllers
-- **In-Memory Data Service**: Uses advanced data structures (Queue, Stack, Dictionary, PriorityQueue)
-- **Razor Views**: Dynamic, responsive UI with Bootstrap and custom CSS
-- **Routing**: Clean URL structure with controller/action mapping
-- **Styling**: Fixed top taskbar, cityscape background, and semantic layout
+Local Events
+- Browse upcoming events
+- Search by category or date
+- Recommendation engine based on user interest
+
+Service Request Status
+- **AVL Tree**: Sorted request storage and fast lookup
+- **MinHeap**: Extract most urgent request
+- **Graph**: BFS/DFS traversal of request dependencies
+- **MST**: Optimize service zone connections
 
 ---
 
-Technologies Used
+4. Project Structure
 
-| Technology        | Purpose                          |
-|------------------|----------------------------------|
-| ASP.NET Core MVC | Web framework                    |
-| C# (.NET 6+)      | Backend logic                    |
-| Razor Pages      | Dynamic HTML rendering           |
-| Bootstrap 5      | Responsive UI styling            |
-| Custom CSS       | Branding and layout              |
-| Visual Studio 2022 | Development environment        |
-
-
-How to Run the Application
-
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/yourusername/municipal-services-app.git
 ```
+MunicipalService_P3/
+├── Controllers/
+│   └── StatusController.cs
+├── Models/
+│   └── ServiceRequest.cs
+├── DataStructures/
+│   ├── AvlTree.cs
+│   ├── MinHeap.cs
+│   └── Graph.cs
+├── Views/
+│   └── Status/
+│       ├── Index.cshtml
+│       ├── Create.cshtml
+│       ├── Urgent.cshtml
+│       ├── MST.cshtml
+│       ├── DFS.cshtml
+│       └── Edges.cshtml
+├── Data/
+│   └── AppDbContext.cs
+├── Services/
+│   ├── IDataService.cs
+│   └── InMemoryDataService.cs
 
-### 2. Open in Visual Studio 2022
+5. AI Tool Usage
 
-- Open the `.sln` file
-- Ensure target framework is `.NET 6.0` or higher
+AI tools were used to:
+- Generate boilerplate code for AVL, MinHeap, Graph, and MST
+- Draft documentation and README structure
+- Suggest improvements for rubric alignment
 
-### 3. Restore NuGet Packages
+All AI-generated content was reviewed and adapted to meet academic integrity requirements.
 
-- Right-click the solution → `Restore NuGet Packages`
 
-### 4. Register the Data Service
+6. Rubric Checklist
 
-In `Program.cs`, ensure this line is present:
-
-```csharp
-builder.Services.AddSingleton<IDataService, InMemoryDataService>();
-```
-
-### 5. Run the App
-
-- Press `F5` or click `Start`
-- Navigate to:  
-  ```
-  https://localhost:7060
-  ```
-
----
-
-Features Implemented
-
-- ✅ Issue Reporting with timestamp and ID
-- ✅ Event search by keyword, category, and date
-- ✅ Service Request creation, priority queueing, and dependency tracking
-- ✅ Top priority request display
-- ✅ Search by Request ID
-- ✅ Clean UI with fixed top navigation
-
----
-
-Design Considerations
-
-- Fixed top taskbar for consistent navigation
-- Cityscape background for civic branding
-- Responsive layout with Bootstrap and custom CSS
-- Semantic HTML for accessibility
-- Modular Razor views for maintainability
-
-Demo Video
-
-https://youtu.be/Y7eElKOlf3A
----
-
-AI Tools Used
-
-| Tool               | Usage Description                                      |
-|-------------------|--------------------------------------------------------|
-| Microsoft Copilot | Code generation, UI layout, documentation              |
-| GitHub Copilot    | Autocomplete and syntax suggestions                    |
-| Visual Studio IntelliCode | Smart recommendations during development     |
+| Criteria                     | Status |
+|-----------------------------|--------|
+| README File                 |  Clear, complete, well-organized |
+| Software Functionality      |  Fully working |
+| Application Requirements    |  All met |
+| User Experience             |  Intuitive and responsive |
+| Data Structures             |  AVL, Heap, Graph, MST integrated |
+| Reports                     | Implementation + Completion reports submitted |
+| Technology Recommendations | Included and justified |
 
 ---
 
-GitHub Usage Summary
+7. Author
 
-- Branching used for feature isolation
-- Commit messages are descriptive and rubric-aligned
-- README and documentation maintained in root
-- Screenshots and video embedded for clarity
+- **Student:** ST10030780 – Sidney  
+- **Module:** PROG7312 – Application Development  
+- **Institution:** The Independent Institute of Education (IIE), 2025
